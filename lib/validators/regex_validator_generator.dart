@@ -12,8 +12,8 @@ class RegexValidatorGenerator implements FieldValidatorGenerator {
     final pattern = annotation.getField('pattern')?.toStringValue();
     if (pattern == null) return '';
     return """
-    if ($fieldName != null && !RegExp(r'$pattern').hasMatch($fieldName)) {
-      errors['$fieldName'] = '\${message ?? 'Invalid format'}';
+    if ($fieldName != null && !RegExp(r'$pattern').hasMatch($fieldName!)) {
+      errors['$fieldName'] = '${message ?? '$fieldName has invalid format'}';
     }
     """
         .trim();

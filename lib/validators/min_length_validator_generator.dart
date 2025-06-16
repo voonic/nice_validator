@@ -12,8 +12,8 @@ class MinLengthValidatorGenerator implements FieldValidatorGenerator {
     final min = annotation.getField('min')?.toIntValue();
     if (min == null) return '';
     return """
-    if ($fieldName != null && $fieldName.length != null && $fieldName.length < $min) {
-      errors['$fieldName'] = '\${message ?? 'Minimum $min characters'}';
+    if ($fieldName != null && $fieldName!.length < $min) {
+      errors['$fieldName'] = '${message ?? '$fieldName requires min $min chars'}';
     }
     """
         .trim();

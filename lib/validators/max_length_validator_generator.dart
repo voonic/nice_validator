@@ -12,8 +12,8 @@ class MaxLengthValidatorGenerator implements FieldValidatorGenerator {
     final max = annotation.getField('max')?.toIntValue();
     if (max == null) return '';
     return """
-    if ($fieldName != null && $fieldName.length != null && $fieldName.length > $max) {
-      errors['$fieldName'] = '\${message ?? 'Maximum $max characters'}';
+    if ($fieldName != null && $fieldName!.length > $max) {
+      errors['$fieldName'] = '${message ?? '$fieldName can have max $max chars'}';
     }
     """
         .trim();

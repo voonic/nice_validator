@@ -14,8 +14,8 @@ extension UserFormValidation on UserForm {
         (username is String && username?.trim().isEmpty == true)) {
       errors['username'] = 'Username is mandatory';
     }
-    if (username != null && username.length != null && username.length < 4) {
-      errors['username'] = '${message ?? 'Minimum 4 characters'}';
+    if (username != null && username!.length < 4) {
+      errors['username'] = 'Username must be at least 4 characters';
     }
     if (email == null || (email is String && email?.trim().isEmpty == true)) {
       errors['email'] = 'Email is required';
