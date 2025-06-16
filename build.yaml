@@ -1,0 +1,8 @@
+builders:
+  form_validator:
+    import: "package:nice_validator/generator/builder.dart"
+    builder_factories: ["validatorBuilder"]
+    build_extensions: {".dart": [".g.dart"]}
+    auto_apply: dependents
+    build_to: source
+    applies_builders: ["source_gen|combining_builder"]
