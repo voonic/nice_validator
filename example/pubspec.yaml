@@ -1,0 +1,13 @@
+name: nice_validator_example
+publish_to: none
+
+environment:
+  sdk: '>=2.18.0 <4.0.0'
+
+dependencies:
+  nice_validator:
+    path: ../
+  meta: any
+
+dev_dependencies:
+  build_runner: ^2.4.6

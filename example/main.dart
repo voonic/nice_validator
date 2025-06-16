@@ -1,4 +1,4 @@
-import 'user_form.dart';
+import 'package:nice_validator_example/user_form.dart';
 
 void main() {
   final form = UserForm(username: 'abc', email: null);
