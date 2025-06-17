@@ -1,5 +1,5 @@
 import 'package:nice_validator/nice_validator.dart';
-part 'user_form.g.dart';
+part 'user_form.nv.dart';
 
 @FormModel()
 class UserForm {
