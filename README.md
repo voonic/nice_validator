@@ -17,42 +17,24 @@ A lightweight, annotation-based validation framework for Dart. Define validation
 ## 🧱 Example
 
 ```dart
+import 'package:nice_validator/nice_validator.dart';
+part 'user_form.nv.dart'; // <-- this is required <filename>.nv.dart
+
 @FormModel()
-class ExerciseForm with _$ExerciseFormValidation {
-  @Required(message: 'Name is required')
-  @MinLength(3)
-  final String? name;
+class UserForm {
+  @Required(message: 'Username is mandatory')
+  @MinLength(4, message: 'Username must be at least 4 characters')
+  final String? username;
 
-  @Required()
-  final ExerciseType? type;
+  @Required(message: 'Email is required')
+  final String? email;
 
-  final String? equipment;
+  UserForm({this.username, this.email});
 }
 
-final form = ExerciseForm(name: '', type: null);
+final form = UserForm(username: '', email: null);
 final errors = form.validate();
 ```
-
-**Generated output:**
-
-```dart
-mixin _$ExerciseFormValidation {
-  Map<String, String> validate() {
-    final errors = <String, String>{};
-    if (name == null || name!.trim().isEmpty) {
-      errors['name'] = 'Name is required';
-    } else if (name!.length < 3) {
-      errors['name'] = 'Minimum 3 characters';
-    }
-    if (type == null) {
-      errors['type'] = 'This field is required';
-    }
-    return errors;
-  }
-}
-```
-
----
 
 ## 📦 Supported Validators
 
@@ -93,16 +75,7 @@ dart run build_runner build
 ## 📌 Notes
 
 - The model class must use `@FormModel()`
-- You must mix in the generated validator mixin: `with _$YourClassValidation`
 - No runtime reflection — Flutter safe
-
----
-
-## 💡 Roadmap
-
-- [ ] Support nested object validation
-- [ ] Add `.build()` for model transformation
-- [ ] Aggregated error objects / exceptions
 
 ---
 
