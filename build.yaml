@@ -6,3 +6,6 @@ builders:
     auto_apply: dependents
     build_to: source
     applies_builders: ["source_gen"]
+    defaults:
+      options:
+        output_extension: ".nv.dart" 

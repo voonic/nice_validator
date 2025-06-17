@@ -7,18 +7,23 @@ part of 'user_form.dart';
 // ValidatorGenerator
 // **************************************************************************
 
+// GitHub: https://github.com/voonic/nice_validator
+
 extension UserFormValidation on UserForm {
   Map<String, String> validate() {
     final errors = <String, String>{};
     if (username == null ||
         (username is String && username?.trim().isEmpty == true)) {
-      errors['username'] = 'Username is mandatory';
+      errors['username'] = 'username is required';
     }
     if (username != null && username!.length < 4) {
       errors['username'] = 'Username must be at least 4 characters';
     }
     if (email == null || (email is String && email?.trim().isEmpty == true)) {
       errors['email'] = 'Email is required';
+    }
+    if (email != null && !RegExp(r'^.+@.+..+').hasMatch(email!)) {
+      errors['email'] = 'Invalid email';
     }
     return errors;
   }

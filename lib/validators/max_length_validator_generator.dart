@@ -13,7 +13,7 @@ class MaxLengthValidatorGenerator implements FieldValidatorGenerator {
     if (max == null) return '';
     return """
     if ($fieldName != null && $fieldName!.length > $max) {
-      errors['$fieldName'] = '${message ?? '$fieldName can have max $max chars'}';
+      errors['$fieldName'] = '${message != null && message.isNotEmpty ? message : '$fieldName can have max $max chars'}';
     }
     """
         .trim();

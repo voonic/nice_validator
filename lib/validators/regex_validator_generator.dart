@@ -13,7 +13,7 @@ class RegexValidatorGenerator implements FieldValidatorGenerator {
     if (pattern == null) return '';
     return """
     if ($fieldName != null && !RegExp(r'$pattern').hasMatch($fieldName!)) {
-      errors['$fieldName'] = '${message ?? '$fieldName has invalid format'}';
+      errors['$fieldName'] = '${message != null && message.isNotEmpty ? message : '$fieldName has invalid format'}';
     }
     """
         .trim();

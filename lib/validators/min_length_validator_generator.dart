@@ -13,7 +13,7 @@ class MinLengthValidatorGenerator implements FieldValidatorGenerator {
     if (min == null) return '';
     return """
     if ($fieldName != null && $fieldName!.length < $min) {
-      errors['$fieldName'] = '${message ?? '$fieldName requires min $min chars'}';
+      errors['$fieldName'] = '${message != null && message.isNotEmpty ? message : '$fieldName requires min $min chars'}';
     }
     """
         .trim();

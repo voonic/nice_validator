@@ -17,7 +17,7 @@ class EqualsValidatorGenerator implements FieldValidatorGenerator {
     final val = str != null ? "'\$str'" : (intVal ?? dblVal ?? boolVal);
     return """
     if ($fieldName != $val) {
-      errors['$fieldName'] = '${message ?? '$fieldName must be equal to $val'}';
+      errors['$fieldName'] = '${message != null && message.isNotEmpty ? message : '$fieldName must be equal to $val'}';
     }
     """
         .trim();

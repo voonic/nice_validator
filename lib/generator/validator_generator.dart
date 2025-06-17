@@ -39,7 +39,8 @@ class ValidatorGenerator extends GeneratorForAnnotation<FormModel> {
     final className = element.name;
     final extensionName = '${className}Validation';
     final buffer = StringBuffer();
-
+    buffer.writeln('// GitHub: https://github.com/voonic/nice_validator');
+    buffer.writeln('');
     buffer.writeln('extension $extensionName on $className {');
     buffer.writeln('  Map<String, String> validate() {');
     buffer.writeln('    final errors = <String, String>{};');
@@ -52,8 +53,7 @@ class ValidatorGenerator extends GeneratorForAnnotation<FormModel> {
         if (constantValue == null) continue;
 
         final reader = ConstantReader(constantValue);
-        final typeName =
-            reader.objectValue.type?.getDisplayString(withNullability: false);
+        final typeName = reader.objectValue.type?.getDisplayString();
         final message = reader.peek('message')?.stringValue ?? '';
         print(message);
         final validator = validators.firstWhere(

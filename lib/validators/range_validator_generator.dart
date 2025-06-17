@@ -13,7 +13,7 @@ class RangeValidatorGenerator implements FieldValidatorGenerator {
     final max = annotation.getField('max')?.toDoubleValue();
     return """
     if ($fieldName != null && ($fieldName! < $min || $fieldName! > $max)) {
-      errors['$fieldName'] = '${message ?? '$fieldName value must be between $min and $max'}';
+      errors['$fieldName'] = '${message != null && message.isNotEmpty ? message : '$fieldName value must be between $min and $max'}';
     }
     """
         .trim();

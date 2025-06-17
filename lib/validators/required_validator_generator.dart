@@ -11,7 +11,7 @@ class RequiredValidatorGenerator implements FieldValidatorGenerator {
   String generate(String fieldName, DartObject annotation, String? message) {
     return """
     if ($fieldName == null || ($fieldName is String && $fieldName?.trim().isEmpty == true)) {
-      errors['$fieldName'] = '${message ?? '$fieldName is required'}';
+      errors['$fieldName'] = '${message != null && message.isNotEmpty ? message : '$fieldName is required'}';
     }
     """
         .trim();
