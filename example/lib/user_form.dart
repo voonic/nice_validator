@@ -4,7 +4,8 @@ part 'user_form.nv.dart';
 @FormModel()
 class UserForm {
   @Required()
-  @MinLength(4, message: 'Username must be at least 4 characters')
+  @MinLength(4)
+  @MaxLength(6)
   final String? username;
 
   @Required(message: 'Email is required')
@@ -14,5 +15,8 @@ class UserForm {
   @Range(2, 4)
   final int? age;
 
-  UserForm({this.username, this.email, this.age});
+  @Equals('file.txt')
+  final String? file;
+
+  UserForm({this.username, this.email, this.age, this.file});
 }

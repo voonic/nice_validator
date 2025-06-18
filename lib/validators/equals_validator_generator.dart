@@ -14,9 +14,13 @@ class EqualsValidatorGenerator implements FieldValidatorGenerator {
     final intVal = expected?.toIntValue();
     final dblVal = expected?.toDoubleValue();
     final boolVal = expected?.toBoolValue();
-    final val = str != null ? "'\$str'" : (intVal ?? dblVal ?? boolVal);
+    final conditionVal = str != null && str.isNotEmpty
+        ? '\'$str\''
+        : (intVal ?? dblVal ?? boolVal);
+    final val =
+        str != null && str.isNotEmpty ? '$str' : (intVal ?? dblVal ?? boolVal);
     return """
-    if ($fieldName != $val) {
+    if ($fieldName != $conditionVal) {
       errors['$fieldName'] = '${message != null && message.isNotEmpty ? message : '$fieldName must be equal to $val'}';
     }
     """

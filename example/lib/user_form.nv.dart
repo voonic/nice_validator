@@ -17,7 +17,10 @@ extension UserFormValidation on UserForm {
       errors['username'] = 'username is required';
     }
     if (username != null && username!.length < 4) {
-      errors['username'] = 'Username must be at least 4 characters';
+      errors['username'] = 'username requires min 4 chars';
+    }
+    if (username != null && username!.length > 6) {
+      errors['username'] = 'username can have max 6 chars';
     }
     if (email == null || (email is String && email?.trim().isEmpty == true)) {
       errors['email'] = 'Email is required';
@@ -27,6 +30,9 @@ extension UserFormValidation on UserForm {
     }
     if (age != null && (age! < 2 || age! > 4)) {
       errors['age'] = 'age value must be between 2 and 4';
+    }
+    if (file != 'file.txt') {
+      errors['file'] = 'file must be equal to file.txt';
     }
     return errors;
   }
