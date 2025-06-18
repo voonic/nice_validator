@@ -11,5 +11,8 @@ class UserForm {
   @Regex('^.+@.+\..+', message: 'Invalid email')
   final String? email;
 
-  UserForm({this.username, this.email});
+  @Range(2, 4)
+  final int? age;
+
+  UserForm({this.username, this.email, this.age});
 }

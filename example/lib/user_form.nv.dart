@@ -25,6 +25,9 @@ extension UserFormValidation on UserForm {
     if (email != null && !RegExp(r'^.+@.+..+').hasMatch(email!)) {
       errors['email'] = 'Invalid email';
     }
+    if (age != null && (age! < 2 || age! > 4)) {
+      errors['age'] = 'age value must be between 2 and 4';
+    }
     return errors;
   }
 }

@@ -9,8 +9,11 @@ class RangeValidatorGenerator implements FieldValidatorGenerator {
 
   @override
   String generate(String fieldName, DartObject annotation, String? message) {
-    final min = annotation.getField('min')?.toDoubleValue();
-    final max = annotation.getField('max')?.toDoubleValue();
+    final minValue = annotation.getField('min');
+    final maxValue = annotation.getField('max');
+
+    final min = minValue?.toDoubleValue() ?? minValue?.toIntValue();
+    final max = maxValue?.toDoubleValue() ?? maxValue?.toIntValue();
     return """
     if ($fieldName != null && ($fieldName! < $min || $fieldName! > $max)) {
       errors['$fieldName'] = '${message != null && message.isNotEmpty ? message : '$fieldName value must be between $min and $max'}';
